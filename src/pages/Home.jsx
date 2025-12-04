@@ -56,7 +56,7 @@ export default function Home() {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/send", {
+      const res = await fetch("/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
