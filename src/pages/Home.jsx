@@ -47,36 +47,39 @@ export default function Home() {
   };
 
   // Contact form submit handler (UPDATED)
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const API_URL = import.meta.env.VITE_API_URL || "";
 
-    if (!name || !email || !message) {
-      alert("Please fill all fields");
-      return;
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!name || !email || !message) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/send`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Message sent successfully!");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } else {
+      alert(data.message || "Something went wrong");
     }
+  } catch (err) {
+    console.error(err);
+    alert("Failed to send message");
+  }
+};
 
-    try {
-      const res = await fetch("https://guru-portfolio-six.vercel.app/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        alert("Message sent successfully!");
-        setName("");
-        setEmail("");
-        setMessage("");
-      } else {
-        alert(data.message || "Something went wrong");
-      }
-    } catch (err) {
-      alert("Failed to send message");
-      console.error(err);
-    }
-  };
 
   return (
     <>
