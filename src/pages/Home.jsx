@@ -56,7 +56,7 @@ export default function Home() {
     }
 
     try {
-      const res = await fetch("/api/send", {
+      const res = await fetch("https://guru-portfolio-six.vercel.app/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
