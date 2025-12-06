@@ -1,0 +1,22 @@
+npm install react react-dom
+
+npm create vite@latest my-portfolio --template react
+
+npm install react-router-dom
+
+npm install -D tailwindcss postcss autoprefixer
+
+npm install nodemailer
+
+npm install dotenv
+
+npm install cors
+
+npm install -g vercel
+
+
+
+
+
+
+
